@@ -35,6 +35,7 @@ resource "google_compute_firewall" "allow_ssh" {
 
 # 2. VM ke access_config me pass karein
 resource "google_compute_instance" "vm_instance" {
+  depends_on = [ "google_compute_network.custom_vpc", "google_compute_subnetwork.custom_subnet", "google_compute_firewall.allow_ssh" ]
   name         = "my-test-vm"
   machine_type = "e2-micro"
   zone         = "asia-south1-a"
